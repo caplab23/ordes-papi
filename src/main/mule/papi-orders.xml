@@ -93,58 +93,7 @@ output application/json
             </on-error-propagate>
         </error-handler>
     </flow>
-    <flow name="papi-orders-console">
-        <http:listener config-ref="HTTP_Listener_config" path="/console/*">
-            <http:response statusCode="#[vars.httpStatus default 200]">
-                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
-            </http:response>
-            <http:error-response statusCode="#[vars.httpStatus default 500]">
-                <http:body>#[payload]</http:body>
-                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
-            </http:error-response>
-        </http:listener>
-        <apikit:console config-ref="papi-orders-config" />
-        <error-handler>
-            <on-error-propagate type="APIKIT:NOT_FOUND">
-                <ee:transform doc:name="Transform Message">
-                    <ee:message>
-                        <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{message: "Resource not found"}]]></ee:set-payload>
-                    </ee:message>
-                    <ee:variables>
-                        <ee:set-variable variableName="httpStatus">404</ee:set-variable>
-                    </ee:variables>
-                </ee:transform>
-            </on-error-propagate>
-        </error-handler>
-    </flow>
     <flow name="post:\orders:application\json:papi-orders-config">
-        <ee:transform doc:name="Transform Message">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  orderId: 1,
-  date: "2020-03-02T00:00:00.000Z",
-  customerInfos: {
-    customerName: "Jane Doe",
-    customerAddress: "456 Elm St, Cityville, USA"
-  },
-  products: [
-    {
-      productId: "PE4646",
-      productName: "Commercial Leathers - 4646 - Nauset",
-      quantity: 1,
-      price: 79.99,
-      companyName: "PERRONE"
-    }
-  ],
-  totalPrice: 79.99
-} as Object {encoding: "UTF-8", mediaType: "application/json"}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+		<flow-ref doc:name="Post_orders" doc:id="caa834c4-5889-4bf7-aea5-fa2a4627c6cc" name="Post_orders"/>
     </flow>
 </mule>

@@ -6,7 +6,7 @@ api:
 http:
   listener:
     host: "0.0.0.0"
-    port: "8091" 
+    port: "8092" 
     
 sf-orders-sapi:
   host: "0.0.0.0"

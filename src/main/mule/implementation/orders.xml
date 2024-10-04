@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="Post_orders" doc:id="f8460e2a-0dde-444a-a94c-83fb2479f43c" >
+		<logger level="INFO" doc:name="Start Post orders" doc:id="ee4a0d30-9766-48dc-81b4-7236cc16a800" message='Start "Post Orders"' />
+		<scatter-gather doc:name="Scatter-Gather" doc:id="db8265f7-0042-4b0e-8204-29a4c5197f7a" >
+			<route >
+				<ee:transform doc:name="filter products" doc:id="a42701ba-8e0e-4f7b-9e5d-b17f23d14530" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var filteredProducts = payload.products filter ((item, index) -> item.productId contains "AD")
+---
+payload update {
+    case .products -> filteredProducts
+    case .totalPrice -> sum(filteredProducts.price)
+
+}
+]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+				<ee:transform doc:name="Transform Message" doc:id="0388def3-7ce4-4ca8-a73d-7a71a0afbc45" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+				<!-- [STUDIO:"Request"]<http:request method="POST" doc:name="Request" doc:id="0012b4db-7351-4069-a618-7722390fac97" config-ref="HTTP_Request_configuration_CSV" path="/orders"/> [STUDIO] -->
+			</route>
+			<route >
+				<ee:transform doc:name="filter products" doc:id="12ec38c4-190e-4062-ba1b-c7741c97941e" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var filteredProducts = payload.products filter ((item, index) -> item.productId contains "PE")
+---
+payload update {
+    case .products -> filteredProducts
+    case .totalPrice -> sum(filteredProducts.price)
+
+}
+]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+				<ee:transform doc:name="Transform Message" doc:id="9d6d768e-d20d-4b5d-ae31-f998af79be3c" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+				<!-- [STUDIO:"Request"]<http:request method="POST" doc:name="Request" doc:id="e9579022-3a9f-4240-adeb-e438e4a8a064" config-ref="HTTP_Request_configuration_SF" path="/orders"/> [STUDIO] -->
+			</route>
+		</scatter-gather>
+		<ee:transform doc:name="Transform Message" doc:id="9b5e71e9-d39b-4bd3-a232-263a6ce8f6e1">
+					<ee:message>
+						<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	message : "OK"
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+		<logger level="INFO" doc:name="End Post orders" doc:id="848a40f6-1a0e-463c-867b-ae1f77bc33b0" message="End Post orders" />
+	</sub-flow>
+</mule>

@@ -1,5 +1,5 @@
 api:
-  id: "123"
+  id: "19990330"
   listener:
     path: "/*"
 
@@ -8,15 +8,15 @@ http:
     host: "0.0.0.0"
     port: "8092" 
     
-    
 sf-orders-sapi:
   host: "0.0.0.0"
   protocol: "HTTP"
-  port: "8083"
-  basePath: ""
+  port: "8093"
+  basePath: "/api"
+  
   
 csv-orders-sapi:
   host: "0.0.0.0"
   protocol: "HTTP"
-  port: "8084"
-  basePath: ""
+  port: "8094"
+  basePath: "/api"

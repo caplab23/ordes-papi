@@ -23,15 +23,15 @@ payload update {
 ]]></ee:set-payload>
 					</ee:message>
 				</ee:transform>
-				<ee:transform doc:name="Transform Message" doc:id="0388def3-7ce4-4ca8-a73d-7a71a0afbc45" >
+				<!-- [STUDIO:"Transform Message"]<ee:transform doc:name="Transform Message" doc:id="0388def3-7ce4-4ca8-a73d-7a71a0afbc45" >
 					<ee:message >
 						<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
----
-payload]]></ee:set-payload>
+&#45;&#45;-
+payload&#93;&#93;></ee:set-payload>
 					</ee:message>
-				</ee:transform>
-				<!-- [STUDIO:"Request"]<http:request method="POST" doc:name="Request" doc:id="0012b4db-7351-4069-a618-7722390fac97" config-ref="HTTP_Request_configuration_CSV" path="/orders"/> [STUDIO] -->
+				</ee:transform> [STUDIO] -->
+				<http:request method="POST" doc:name="Request to sapi-orders-adhetec /orders" doc:id="0012b4db-7351-4069-a618-7722390fac97" config-ref="HTTP_Request_configuration_CSV" path="/orders"/>
 			</route>
 			<route >
 				<ee:transform doc:name="filter products" doc:id="12ec38c4-190e-4062-ba1b-c7741c97941e" >
@@ -48,15 +48,15 @@ payload update {
 ]]></ee:set-payload>
 					</ee:message>
 				</ee:transform>
-				<ee:transform doc:name="Transform Message" doc:id="9d6d768e-d20d-4b5d-ae31-f998af79be3c" >
+				<!-- [STUDIO:"Transform Message"]<ee:transform doc:name="Transform Message" doc:id="9d6d768e-d20d-4b5d-ae31-f998af79be3c" >
 					<ee:message >
 						<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
----
-payload]]></ee:set-payload>
+&#45;&#45;-
+payload&#93;&#93;></ee:set-payload>
 					</ee:message>
-				</ee:transform>
-				<!-- [STUDIO:"Request"]<http:request method="POST" doc:name="Request" doc:id="e9579022-3a9f-4240-adeb-e438e4a8a064" config-ref="HTTP_Request_configuration_SF" path="/orders"/> [STUDIO] -->
+				</ee:transform> [STUDIO] -->
+				<http:request method="POST" doc:name="Request to sapi-orders-sf /orders" doc:id="e9579022-3a9f-4240-adeb-e438e4a8a064" config-ref="HTTP_Request_configuration_SF" path="/orders"/>
 			</route>
 		</scatter-gather>
 		<ee:transform doc:name="Transform Message" doc:id="9b5e71e9-d39b-4bd3-a232-263a6ce8f6e1">

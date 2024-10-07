@@ -12,7 +12,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<http:request-config name="HTTP_Request_configuration_SF" doc:name="HTTP Request configuration" doc:id="05a15967-3130-4196-b0d5-29c85b6c40e5" basePath="${sf-orders-sapi.basePath}">
 		<http:request-connection protocol="${sf-orders-sapi.protocol}" host="${sf-orders-sapi.host}" port="${sf-orders-sapi.port}" />
 	</http:request-config>
-	<http:request-config name="HTTP_Request_configuration_CSV" doc:name="HTTP Request configuration" doc:id="4deac95d-982b-4b39-8823-7d9f901ec4da" basePath="${csv-orders-sapi.basepath}">
+	<http:request-config name="HTTP_Request_configuration_CSV" doc:name="HTTP Request configuration" doc:id="4deac95d-982b-4b39-8823-7d9f901ec4da" basePath="${csv-orders-sapi.basePath}">
 		<http:request-connection protocol="${csv-orders-sapi.protocol}" host="${csv-orders-sapi.host}" port="${csv-orders-sapi.port}" />
 	</http:request-config>
 </mule>

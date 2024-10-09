@@ -17,13 +17,13 @@ var filteredProducts = payload.products filter ((item, index) -> item.productId 
 ---
 payload update {
     case .products -> filteredProducts
-    case .totalPrice -> sum(filteredProducts.price)
+    case .totalPrice -> sum(filteredProducts.price default [])
 
 }
 ]]></ee:set-payload>
 					</ee:message>
 				</ee:transform>
-				<http:request method="POST" doc:name="Request to sapi-orders-adhetec /orders" doc:id="0012b4db-7351-4069-a618-7722390fac97" config-ref="HTTP_Request_configuration_CSV" path="/orders" responseTimeout="5000000"/>
+				<http:request method="POST" doc:name="Request to sapi-orders-adhetec /orders" doc:id="0012b4db-7351-4069-a618-7722390fac97" config-ref="HTTP_Request_configuration_CSV" responseTimeout="5000000" url="http://${sapi-orders-adhetec.host}${sapi-orders-adhetec.basePath}/orders"/>
 			</route>
 			<route >
 				<ee:transform doc:name="filter products" doc:id="12ec38c4-190e-4062-ba1b-c7741c97941e" >
@@ -34,13 +34,13 @@ var filteredProducts = payload.products filter ((item, index) -> item.productId 
 ---
 payload update {
     case .products -> filteredProducts
-    case .totalPrice -> sum(filteredProducts.price)
+    case .totalPrice -> sum(filteredProducts.price default [])
 
 }
 ]]></ee:set-payload>
 					</ee:message>
 				</ee:transform>
-				<http:request method="POST" doc:name="Request to sapi-orders-sf /orders" doc:id="e9579022-3a9f-4240-adeb-e438e4a8a064" config-ref="HTTP_Request_configuration_SF" path="/orders" responseTimeout="5000000"/>
+				<http:request method="POST" doc:name="Request to sapi-orders-sf /orders" doc:id="e9579022-3a9f-4240-adeb-e438e4a8a064" config-ref="HTTP_Request_configuration_SF" responseTimeout="5000000" url="http://${sapi-orders-sf.host}${sapi-orders-sf.basePath}/orders"/>
 			</route>
 		</scatter-gather>
 		<logger level="INFO" doc:name="payload" doc:id="750edd10-e9ac-49ab-88a8-5cceabd77429" message="#[payload]"/>

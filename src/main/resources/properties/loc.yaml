@@ -2,20 +2,19 @@ api:
   id: "123"
   listener:
     path: "/*"
-
 http:
   listener:
     host: "0.0.0.0"
     port: "8092" 
     
-sf-orders-sapi:
+sapi-orders-sf:
   host: "0.0.0.0"
   protocol: "HTTP"
   port: "8093"
   basePath: "/api"
   
   
-csv-orders-sapi:
+sapi-orders-adhetec:
   host: "0.0.0.0"
   protocol: "HTTP"
   port: "8094"

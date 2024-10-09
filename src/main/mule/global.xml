@@ -10,11 +10,11 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
 	</http:listener-config>
 	<configuration-properties doc:name="Configuration properties" doc:id="51ac3ee8-df80-4a07-a689-31a83401bf6e" file="properties/${mule.env}.yaml" />
 	<global-property doc:name="Global Property" doc:id="80fbcdb7-3f37-4a02-9ae2-6ca842b4055a" name="mule.env" value="loc" />
-	<http:request-config name="HTTP_Request_configuration_SF" doc:name="HTTP Request configuration" doc:id="05a15967-3130-4196-b0d5-29c85b6c40e5" basePath="${sf-orders-sapi.basePath}">
-		<http:request-connection protocol="${sf-orders-sapi.protocol}" host="${sf-orders-sapi.host}" port="${sf-orders-sapi.port}" />
+	<http:request-config name="HTTP_Request_configuration_SF" doc:name="HTTP Request configuration" doc:id="05a15967-3130-4196-b0d5-29c85b6c40e5" basePath="${sapi-orders-sf.basePath}">
+		<http:request-connection protocol="${sapi-orders-sf.protocol}" host="${sapi-orders-sf.host}" port="${sapi-orders-sf.port}" />
 	</http:request-config>
-	<http:request-config name="HTTP_Request_configuration_CSV" doc:name="HTTP Request configuration" doc:id="4deac95d-982b-4b39-8823-7d9f901ec4da" basePath="${csv-orders-sapi.basePath}">
-		<http:request-connection protocol="${csv-orders-sapi.protocol}" host="${csv-orders-sapi.host}" port="${csv-orders-sapi.port}" />
+	<http:request-config name="HTTP_Request_configuration_CSV" doc:name="HTTP Request configuration" doc:id="4deac95d-982b-4b39-8823-7d9f901ec4da" basePath="${sapi-orders-adhetec.basePath}">
+		<http:request-connection protocol="${sapi-orders-adhetec.protocol}" host="${sapi-orders-adhetec.host}" port="${sapi-orders-adhetec.port}" />
 	</http:request-config>
 	<api-gateway:autodiscovery apiId="${api.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="2ab1a413-0bc5-48cb-b2bb-53d5de0714e5" flowRef="papi-orders-main" />
 </mule>

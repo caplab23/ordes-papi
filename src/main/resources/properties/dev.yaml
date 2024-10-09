@@ -2,21 +2,20 @@ api:
   id: "19990330"
   listener:
     path: "/*"
-
 http:
   listener:
     host: "0.0.0.0"
-    port: "8092" 
+    port: "8081" 
     
-sf-orders-sapi:
-  host: "0.0.0.0"
+sapi-orders-sf:
+  host: "sapi-orders-sf.us-e2.cloudhub.io"
   protocol: "HTTP"
-  port: "8093"
+  port: "8081"
   basePath: "/api"
   
   
-csv-orders-sapi:
-  host: "0.0.0.0"
+sapi-orders-adhetec:
+  host: "sapi-orders-adhetec.us-e2.cloudhub.io"
   protocol: "HTTP"
-  port: "8094"
+  port: "8081"
   basePath: "/api"
